@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+<!-- obj: Post 모델 객체 1개 -->
+{% block content %}
+
+<h3>[{{obj.category}}]{{obj.headline}}</h3>
+
+<p>{{obj.author}}/{{obj.pub_date}}</p>
+
+<!-- Post 객체와 연결된 PostImage, PostFile 객체 추출 -->
+
+{% for f in obj.postfild_set.all %}
+	<a href="{{f.file.url}}" download>첨부파일</a>
+	<br>
+{% endfor %}
+
+{% for i in obj.postimage_set.all %}
+	<img src="{{i.image.url}}" width="30%">
+	<br>
+{% endfor %}
+
+<pre>{{obj.content}}</pre>
+
+{% endblock %}
+
+
